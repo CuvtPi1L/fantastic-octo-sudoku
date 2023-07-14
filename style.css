@@ -1,5 +1,9 @@
 /* test update - CG */
 .bob {
-  border: 2px, solid, purple;
+  border: 2px solid purple;
   color: red
+}
+
+td {
+  align-content: center;
 }
