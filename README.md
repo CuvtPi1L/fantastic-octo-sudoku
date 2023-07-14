@@ -17,7 +17,7 @@
 ## code struc for MVP
     framework:
 
-    index(?).html
+    index(?).html  
         award.html
             pint localstorage
     sodoku.js
@@ -32,6 +32,25 @@
 PATRICK TEST
 
 
+## seperation of work
+Chris:
+    index(?).html  
+        header and footer
+        gird setup?
+        
+Chen:
+    function check correct answer
+    user input
+    
+Patrick:
+    take api
+
+Jacqueline:
+    award.html
+        print localstorage
+    style.css
+        bootstr
+    
 
 
 ## Timeline
