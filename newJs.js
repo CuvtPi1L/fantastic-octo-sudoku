@@ -71,7 +71,7 @@ function setGame(data){
         }
       box.addEventListener("click", function(){
         let userBoxSelected = document.getElementById(`${box.id}`)
-        // console.log(`cord box ${box.id}`)
+        // console.log(`cord box ${box.id}`) //testing
         //lets user select number and fill box, need if statement to deny filled boxes 
        if (this.innerText != ''){
         return
