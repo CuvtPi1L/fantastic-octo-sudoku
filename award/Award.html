@@ -12,35 +12,57 @@
     <title>Sudoku Game Generator</title>
   </head>
   <body>
-    <header class="container-fluid bg-blue text-light mb-5 p-3">
-      <div class="d-flex align-items-center">
-        <h1>Sudoku Awards and High Scores</h1>
-      </div>
-    </header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home Page</a>
+      <!-- responsive div tag -->
+      <div class="container">
+        <div class="col-12">
+          <!-- nav bar -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="../index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./award.html"
+                    >Accomplishments <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link disabled"
+                    href="https://github.com/Ad31aid/fantastic-octo-sudoku"
+                    tabindex="-1"
+                    >Github</a
+                  >
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="table-responsive">
+    <header class="container bg-blue text-light mb-5 p-3">
+      <div class="d-flex align-items-center">
+        <h1>Sudoku Awards and High Scores</h1>
+      </div>
+    </header>
+
+    <div class="container table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -48,7 +70,7 @@
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">High Score</th>
-            <th scope="col">Awards</th>
+            <th scope="col">Date</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -85,7 +107,9 @@
       crossorigin="anonymous"
     ></script>
     <footer>
-      <p>© 2023 Made by Group #1</p>
+      <div class="container">
+        <p>© 2023 Made by Group #1</p>
+      </div>
     </footer>
     <script src="./assets/script.js"></script>
   </body>

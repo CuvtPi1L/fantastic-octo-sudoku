@@ -75,7 +75,19 @@ function setGame(data){
         //lets user select number and fill box, need if statement to deny filled boxes 
        if (this.innerText != ''){
         return
-       } else {userBoxSelected.textContent = userChoice}
+       } else {
+          userBoxSelected.textContent = userChoice;
+          ///////////////////////////////////////////////Chris - I added this line to show the start of the code I added.  can delete this line for final product
+          if(userChoice == boardSolution[r][c]){
+          console.log("it's a match")
+          }
+          else{
+            error = error +1
+            console.log('bummer dude')
+            console.log(error)
+          }  
+          ///////////////////////////////////////////////Chris - I added this line to show the end of the code I added.  can delete this line for final product
+      }
         // userBoxSelected.textContent = userChoice // this can be deleted for final product
       });
           
