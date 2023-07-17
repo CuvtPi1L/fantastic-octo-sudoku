@@ -53,7 +53,7 @@ fetch(apiUrl)
     
   gridObj3()
   console.log(puzzleLayout)
-    
+    console.log(puzzleLayout)
 
   // function gridObj2(){
   //   for (var i=0; i<9; i++) {
