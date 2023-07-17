@@ -29,6 +29,7 @@ var raw;
 
   
 function setGame(data){
+  let userChoice;
   let boardSolution = data.newboard.grids[0].solution;
   let boardValue = data.newboard.grids[0].value;
   console.log(boardValue)
@@ -40,9 +41,11 @@ function setGame(data){
     numberBox.id = i
     numberBox.innerText = i
     //interactive with selectNumber()
-    numberBox.addEventListener('click', 
-            console.log(numberBox.id)
-        )
+    numberBox.addEventListener('click', function(){
+      userChoice = numberBox.id
+      console.log(userChoice)
+      console.log(numberBox.id)
+    });
     numberBox.classList.add('number')
     document.getElementById('digits').appendChild(numberBox)
   }
@@ -57,7 +60,7 @@ function setGame(data){
           box.innerText = boardValue[r][c]
           box.classList.add('box-start')
           //skipping 0 in the begining value
-        } else{
+        } else {
           box.innerText = ''
         }
         if (r == 2 || r == 5){
@@ -66,13 +69,35 @@ function setGame(data){
           box.classList.add("vertical-line");
           //add line
         }
-      box.addEventListener("click", 
-          ()=>console.log(`cord box ${box.id}`));
+      box.addEventListener("click", function(){
+        let userBoxSelected = document.getElementById(`${box.id}`)
+        // console.log(`cord box ${box.id}`)
+        //lets user select number and fill box, need if statement to deny filled boxes 
+       if (this.innerText != ''){
+        return
+       } else {
+          userBoxSelected.textContent = userChoice;
+          //Chris - I added this line to show the start of the code I added.  can delete this line for final product
+          if(userChoice != boardSolution[r][c]){
+            error = error +1
+            console.log('bummer dude')
+            console.log(error)
+          }  
+      }
+        // userBoxSelected.textContent = userChoice // this can be deleted for final product
+      });
+          
+          // console.log(`cord box ${box.id}`));
+          
       box.classList.add("box");
       document.getElementById("board").append(box);
+      
     } 
   }
 }
+
+
+//need current selector for user selection
 
 //function for selectingNumber under 
 function selectNumber(){

@@ -34,14 +34,13 @@ PATRICK TEST
 
 ## seperation of work
 
-selectDigit function
-    
-selectGrid function
-    input selected Digit in to grid
+
+userNumberSelect css/function 
+    color change
 
 solutionCheck function
-    compare user slected digit to answer
-        figrue out what happens wrong asnwer
+    need to be intergrated
+
 
 endGame function
     check all grid filled
@@ -54,24 +53,35 @@ awardpage.js
         SVG animation
 
 
+
 Jacqueline:
-    awardpage.
     awardpage.js 
-    take localstorage(count, name)
+        take localstorage(count, name)
+        genrate some kinda of trophe or stuff like that
+            SVG animation  
 
 Chris:
+    hookup accomplishment page
+        hook it up
+
     solutionCheck function
-        compare user slected digit to answer
-            figrue out what happens wrong asnwer
+        need to be intergrated
+
 
 Patrick:
-    selectDigit function
-    
-    selectGrid function
-        input selected Digit in to grid
+      endGame function
+    check all grid filled
+    localstorag.setitem('count')
+    takeName function
 
 chen: 
-    what's left
+  userNumberSelect css/function 
+    color change
+
+    awardpage.js 
+        take localstorage(count, name)
+        genrate some kinda of trophe or stuff like that
+            SVG animation   
 
 
 
@@ -83,9 +93,9 @@ chen:
     July 15:   
     July 16:     weather app
 
-    July 17:     standup   45min          api & libary, js checking function     
-    July 18:     standup   45min          UI
-    July 19:     standup   45min          interface
+    July 17:     standup   45min           
+    July 18:     standup   45min          MVP
+    July 19:     standup   45min          
     July 20:     standup   45min                                finish coding run
     July 21:     standup   45min 
 
