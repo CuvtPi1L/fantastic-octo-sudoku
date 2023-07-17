@@ -33,24 +33,46 @@ PATRICK TEST
 
 
 ## seperation of work
-Chris:
-    index(?).html  
-        header and footer
-        gird setup?
-        
-Chen:
-    function check correct answer
-    user input
+
+selectDigit function
     
-Patrick:
-    take api
+selectGrid function
+    input selected Digit in to grid
+
+solutionCheck function
+    compare user slected digit to answer
+        figrue out what happens wrong asnwer
+
+endGame function
+    check all grid filled
+    localstorag.setitem('count')
+    takeName function
+
+awardpage.js 
+    take localstorage(count, name)
+    genrate some kinda of trophe or stuff like that
+        SVG animation
+
 
 Jacqueline:
-    award.html
-        print localstorage
-    style.css
-        bootstr
+    awardpage.
+    awardpage.js 
+    take localstorage(count, name)
+
+Chris:
+    solutionCheck function
+        compare user slected digit to answer
+            figrue out what happens wrong asnwer
+
+Patrick:
+    selectDigit function
     
+    selectGrid function
+        input selected Digit in to grid
+
+chen: 
+    what's left
+
 
 
 ## Timeline
@@ -66,7 +88,6 @@ Jacqueline:
     July 19:     standup   45min          interface
     July 20:     standup   45min                                finish coding run
     July 21:     standup   45min 
-
 
 
 
