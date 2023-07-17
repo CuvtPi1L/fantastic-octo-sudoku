@@ -70,9 +70,13 @@ function setGame(data){
           //add line
         }
       box.addEventListener("click", function(){
+        let userBoxSelected = document.getElementById(`${box.id}`)
         // console.log(`cord box ${box.id}`)
-        //lets user select number and fill box, need if statement to deny filled boxes
-        document.getElementById(`${box.id}`).textContent = userChoice
+        //lets user select number and fill box, need if statement to deny filled boxes 
+       if (this.innerText != ''){
+        return
+       } else {userBoxSelected.textContent = userChoice}
+        // userBoxSelected.textContent = userChoice // this can be deleted for final product
       });
           
           // console.log(`cord box ${box.id}`));
