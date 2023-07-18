@@ -63,8 +63,8 @@ function setGame(data) {
         box.classList.add('box-start')
         //skipping 0 in the begining value
       } else {
-        box.classList.add('box-empty')
         box.innerText = ''
+        box.classList.add('box-empty')
       }
       if (r == 2 || r == 5) {
         box.classList.add('horizontal-line')
@@ -81,7 +81,7 @@ function setGame(data) {
   }
   const boxStart = document.querySelectorAll('.box-empty');
   console.log(boxStart)
-
+  //add eventlistener to each emptybox that has a class .box-empty
   boxStart.forEach(function (emptyBox) {
     emptyBox.addEventListener("click", function () {
       let userBoxSelected = document.getElementById(`${emptyBox.id}`)
@@ -89,21 +89,24 @@ function setGame(data) {
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
       userBoxSelected.textContent = userChoice;
-
+      console.log(boardValue)
+      console.log(boardSolution)
+      console.log(boardValue[c])
+      boardValue[r].splice([c],1,Number.parseInt(userBoxSelected.textContent))
+      console.log(boardValue[c])
+      console.log(boardValue[r])
+      console.log(r,c)
       if (userChoice == boardSolution[r][c]) {
         console.log("it's a match")
-      }
-      else {
+      } else {
         error = error + 1
         console.log('bummer dude')
         console.log(error)
-        //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
+        //need if statement to return if userchoice is empty
       }
-
     });
   })
 }
-
 
 //need current selector for user selection
 
