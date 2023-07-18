@@ -1,26 +1,16 @@
 
-
-
-//define raw API data for storage
-var raw;
-//this raw doesn't do anything, i don't know why
-
 async function gainsheet() {
   const response = await fetch("https://sudoku-api.vercel.app/api/dosuku");
   const rawAPI = await response.json();
   setGame(rawAPI)
   console.log(rawAPI)
 }
-
 window.load = gainsheet()
-//run as window open
+//fetch function
 
 
-//asign cordnite for number selected also tile that is selected
-//error feature for scoring
-var numberSelected = null
-var tileSelected = null;
 var error = 0;
+var pineapple = 1;
 //trying to fucking get the board, it doesn't let me extract the property of raw what the heck
 
 
@@ -41,27 +31,36 @@ function setGame(data) {
     numberBox.id = i
     numberBox.innerText = i
     //interactive with selectNumber()
+    
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-
+      console.log(pineapple)
+      if (pineapple != userChoice){
+        let cat = document.getElementById(pineapple)
+        cat.classList.remove('number-selected')
+      }  //chris
+      pineapple = numberBox.id //chris
+      // numberBox.classList.remove('number-selected') //chris
+      // try {numberBox.classList.remove('number-selected')} //chris
+      // catch{console.log('remove grey')} //chris
       console.log(userChoice)
       console.log(numberBox.id)
+      console.log(pineapple)
+      numberBox.classList.add('number-selected')  //chris
     });
     numberBox.classList.add('number')
+    
     document.getElementById('digits').appendChild(numberBox)
   }
 
-  //board 9x9, easy!
+  //board 9x9
   for (let r = 0; r < 9; r++) {
-    //each row and each col
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
-
       box.id = r + '-' + c;
       if (boardValue[r][c] != '0') {
         box.innerText = boardValue[r][c]
         box.classList.add('box-start')
-        //skipping 0 in the begining value
       } else {
         box.innerText = ''
         box.classList.add('box-empty')
@@ -71,12 +70,9 @@ function setGame(data) {
       }
       if (c == 2 || c == 5) {
         box.classList.add("vertical-line");
-        //add line
-      }
-
+      }  
       box.classList.add("box");
       document.getElementById("board").append(box);
-
     }
   }
   const boxStart = document.querySelectorAll('.box-empty');
@@ -91,22 +87,27 @@ function setGame(data) {
       userBoxSelected.textContent = userChoice;
       console.log(boardValue)
       console.log(boardSolution)
-      console.log(boardValue[c])
+      
       boardValue[r].splice([c],1,Number.parseInt(userBoxSelected.textContent))
-      console.log(boardValue[c])
+      
       console.log(boardValue[r])
       console.log(r,c)
       if (userChoice == boardSolution[r][c]) {
         console.log("it's a match")
-      } else {
+        try {userBoxSelected.classList.remove('red-text')}
+        catch{console.log('no red text')}
+      }
+      else {
         error = error + 1
         console.log('bummer dude')
         console.log(error)
-        //need if statement to return if userchoice is empty
+        userBoxSelected.classList.add('red-text')
+        //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
       }
     });
   })
 }
+
 
 //need current selector for user selection
 
@@ -116,4 +117,3 @@ function selectNumber() {
   boardValue.classList.add('number-selected')
   console.log(boardValue)
 }
-
