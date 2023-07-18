@@ -14,10 +14,12 @@ function tableGen() {
   tableRow.appendChild(tableHead);
   //   tableRow.appendChild(tableColumn);
 
+  const UserInfo = ["siyuan", "che", 90, "jeb"];
   for (time = 0; time < 4; time++) {
     let tableColumn = document.createElement("td");
     tableRow.appendChild(tableColumn);
     tableColumn.id = time;
+    document.getElementById(time).innerHTML = UserInfo[time];
   }
 
   function getGameData() {
@@ -31,15 +33,6 @@ function tableGen() {
     tableInfo.push();
     localStorage.setItem("game data", JSON.stringify(tableInfo));
     displayGameData();
-  }
-
-  function displayGameData() {
-    // console.log(tableColumn);
-    tableColumn.innerHTML = "first name";
-    // tableColumn.innerHTML = "last name";
-    // tableColumn.innerHTML = "high score";
-    // tableColumn.innerHTML = "awards";
-    console.log(tableColumn);
   }
 
   //   jegGen();
