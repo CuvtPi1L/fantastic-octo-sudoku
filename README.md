@@ -38,10 +38,6 @@ PATRICK TEST
 userNumberSelect css/function 
     color change
 
-solutionCheck function
-    need to be intergrated
-
-
 endGame function
     check all grid filled
     localstorag.setitem('count')
@@ -52,6 +48,11 @@ awardpage.js
     genrate some kinda of trophe or stuff like that
         SVG animation
 
+* GenerativeHtml.js on Award page
+
+* NumberSelect color
+
+* checkFunction wrong color
 
 
 Jacqueline:
@@ -61,20 +62,13 @@ Jacqueline:
             SVG animation  
 
 Chris:
-    hookup accomplishment page
-        hook it up
-
-    solutionCheck function
-        need to be intergrated
-
+    checkFunction wrong color
 
 Patrick:
-      endGame function
-    check all grid filled
-    localstorag.setitem('count')
-    takeName function
+    boxcheck
 
 chen: 
+    
   userNumberSelect css/function 
     color change
 
@@ -115,3 +109,9 @@ difficults
     PR 
 
  3 hints 
+
+
+
+
+
+

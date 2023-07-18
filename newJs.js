@@ -44,6 +44,7 @@ function setGame(data) {
     //interactive with selectNumber()
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
+      
       console.log(userChoice)
       console.log(numberBox.id)
     });
