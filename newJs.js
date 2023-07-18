@@ -3,7 +3,6 @@
 
 //define raw API data for storage
 var raw;
-let boxStart;
 //this raw doesn't do anything, i don't know why
 
 async function gainsheet() {
@@ -44,7 +43,7 @@ function setGame(data) {
     //interactive with selectNumber()
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-      
+
       console.log(userChoice)
       console.log(numberBox.id)
     });
@@ -74,39 +73,35 @@ function setGame(data) {
         box.classList.add("vertical-line");
         //add line
       }
-      boxStart = document.querySelectorAll('.box-empty');
-      console.log(boxStart)
-      
-      box.addEventListener("click", function () {
-        let userBoxSelected = document.getElementById(`${box.id}`)
-        // console.log(`cord box ${box.id}`) //testing
-        //lets user select number and fill box, need if statement to deny filled boxes 
-        if (this.innerText != '') { 
-          //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
-          return
-        } else {
-          userBoxSelected.textContent = userChoice;
-          ///////////////////////////////////////////////Chris - I added this line to show the start of the code I added.  can delete this line for final product
-          if (userChoice == boardSolution[r][c]) {
-          console.log("it's a match")
-          }
-          else {
-            error = error + 1
-            console.log('bummer dude')
-            console.log(error)
-          }  
-          ///////////////////////////////////////////////Chris - I added this line to show the end of the code I added.  can delete this line for final product
-      }
-        // userBoxSelected.textContent = userChoice // this can be deleted for final product
-      });
-
-      // console.log(`cord box ${box.id}`));
 
       box.classList.add("box");
       document.getElementById("board").append(box);
 
     }
   }
+  const boxStart = document.querySelectorAll('.box-empty');
+  console.log(boxStart)
+
+  boxStart.forEach(function (emptyBox) {
+    emptyBox.addEventListener("click", function () {
+      let userBoxSelected = document.getElementById(`${emptyBox.id}`)
+      console.log('click')
+      const r = emptyBox.id.split('-')[0]
+      const c = emptyBox.id.split('-')[1]
+      userBoxSelected.textContent = userChoice;
+
+      if (userChoice == boardSolution[r][c]) {
+        console.log("it's a match")
+      }
+      else {
+        error = error + 1
+        console.log('bummer dude')
+        console.log(error)
+        //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
+      }
+
+    });
+  })
 }
 
 
