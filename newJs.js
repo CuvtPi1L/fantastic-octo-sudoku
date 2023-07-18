@@ -85,17 +85,27 @@ function setGame(data) {
           return
         } else {
           userBoxSelected.textContent = userChoice;
+<<<<<<< HEAD
           ///////////////////////////////////////////////Chris - I added this line to show the start of the code I added.  can delete this line for final product
           if (userChoice == boardSolution[r][c]) {
-            console.log("it's a match")
+          console.log("it's a match")
           }
           else {
             error = error + 1
             console.log('bummer dude')
             console.log(error)
-          }
+          }  
           ///////////////////////////////////////////////Chris - I added this line to show the end of the code I added.  can delete this line for final product
-        }
+      }
+=======
+          //Chris - I added this line to show the start of the code I added.  can delete this line for final product
+          if(userChoice != boardSolution[r][c]){
+            error = error +1
+            console.log('bummer dude')
+            console.log(error)
+          }  
+      }
+>>>>>>> 1e903f77d151b9cb7a8a8d121828690c178c736f
         // userBoxSelected.textContent = userChoice // this can be deleted for final product
       });
 
@@ -110,7 +120,6 @@ function setGame(data) {
 
 
 //need current selector for user selection
-
 
 //function for selectingNumber under 
 function selectNumber() {

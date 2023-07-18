@@ -41,8 +41,6 @@ userNumberSelect css/function
 solutionCheck function
     need to be intergrated
 
-hookup accomplishment page
-    hook it up
 
 endGame function
     check all grid filled
