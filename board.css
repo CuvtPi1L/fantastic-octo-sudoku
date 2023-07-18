@@ -60,3 +60,7 @@
 .vertical-line {
     border-right: 3px solid lightslategray;
 }
+
+.red-text{
+    color:red;
+}

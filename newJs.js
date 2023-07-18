@@ -78,12 +78,14 @@ function setGame(data){
         return
        } else {
           userBoxSelected.textContent = userChoice;
+          // userChoice.classList.remove('red-text') //chris add
           //Chris - I added this line to show the start of the code I added.  can delete this line for final product
           if(userChoice != boardSolution[r][c]){
             error = error +1
             console.log('bummer dude')
             console.log(error)
-          }  
+            userBoxSelected.classList.add('red-text')  //chris add
+          }
       }
         // userBoxSelected.textContent = userChoice // this can be deleted for final product
       });
