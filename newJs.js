@@ -21,6 +21,7 @@ window.load = gainsheet()
 var numberSelected = null
 var tileSelected = null;
 var error = 0;
+var pineapple = 1;
 //trying to fucking get the board, it doesn't let me extract the property of raw what the heck
 
 
@@ -41,13 +42,25 @@ function setGame(data) {
     numberBox.id = i
     numberBox.innerText = i
     //interactive with selectNumber()
+    
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-
+      console.log(pineapple)
+      if (pineapple != userChoice){
+        let cat = document.getElementById(pineapple)
+        cat.classList.remove('number-selected')
+      }  //chris
+      pineapple = numberBox.id //chris
+      // numberBox.classList.remove('number-selected') //chris
+      // try {numberBox.classList.remove('number-selected')} //chris
+      // catch{console.log('remove grey')} //chris
       console.log(userChoice)
       console.log(numberBox.id)
+      console.log(pineapple)
+      numberBox.classList.add('number-selected')  //chris
     });
     numberBox.classList.add('number')
+    
     document.getElementById('digits').appendChild(numberBox)
   }
 
