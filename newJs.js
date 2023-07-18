@@ -88,24 +88,30 @@ function setGame(data) {
           box.classList.add("vertical-line");
           //add line
         }
-      box.addEventListener("click", function(){
-        let userBoxSelected = document.getElementById(`${box.id}`)
-        // console.log(`cord box ${box.id}`)
-        //lets user select number and fill box, need if statement to deny filled boxes 
-       if (this.innerText != ''){
-        return
-       } else {
-          userBoxSelected.textContent = userChoice;
-          // userChoice.classList.remove('red-text') //chris add
-          if(userChoice != boardSolution[r][c]){
-            error = error +1
-            console.log('bummer dude')
-            console.log(error)
-            userBoxSelected.classList.add('red-text')  //chris add
-          }
-      }
-        // userBoxSelected.textContent = userChoice // this can be deleted for final product
-      });
+      // box.addEventListener("click", function(){
+      //   let userBoxSelected = document.getElementById(`${box.id}`)
+      //   // console.log(`cord box ${box.id}`)
+      //   //lets user select number and fill box, need if statement to deny filled boxes 
+      //  if (this.innerText != ''){
+      //   return
+      //  } else {
+      //     userBoxSelected.textContent = userChoice;
+      //     userBoxSelected.classList.remove('red-text')
+      //     if(userChoice != boardSolution[r][c]){
+      //       error = error +1
+      //       console.log('bummer dude')
+      //       console.log(error)
+      //       userBoxSelected.classList.add('red-text')
+      //     }
+      //     // else{
+      //     //   userBoxSelected.classList.remove('red-text')
+      //     //   // try {userBoxSelected.classList.remove('red-text')}
+      //     //   // catch{console.log('no red text')}
+      //     // }
+        
+      // }
+      //   // userBoxSelected.textContent = userChoice // this can be deleted for final product
+      // });
           
           // console.log(`cord box ${box.id}`));
           
@@ -127,11 +133,14 @@ function setGame(data) {
 
       if (userChoice == boardSolution[r][c]) {
         console.log("it's a match")
+        try {userBoxSelected.classList.remove('red-text')}
+        catch{console.log('no red text')}
       }
       else {
         error = error + 1
         console.log('bummer dude')
         console.log(error)
+        userBoxSelected.classList.add('red-text')
         //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
       }
 
