@@ -16,45 +16,48 @@
   <body>
     <!--adativiability div tag-->
     <div class="container">
-    <div class="col-12">
-          <!--These are the nav bar-->
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./about.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./award/award.html">Accomplishment</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="https://github.com/Ad31aid/fantastic-octo-sudoku" tabindex="-1">Github</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        </div>
+      <div class="col-12">
+        <!--These are the nav bar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./award/Award.html">Accomplishment</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
 
-      
         <h2 id="endGameJump"> Jump to endGame condition</h2>
         <h2 id="timer">TIMER</h2>
+
 
     <!--Sudokuboard board goes here-->
     <div>
       <div id="board"></div>
-    
+
       <div id="digits"></div>
     </div>
     <a class="btn btn-primary btn-lg active" id="newPuz" role="button" aria-pressed="true">New Puzzle</a>
-
-    <script src="./newJs.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./newJs.js"></script>
   </body>
 </html>
