@@ -1,7 +1,9 @@
 
+
 async function gainsheet() {
   const response = await fetch("https://sudoku-api.vercel.app/api/dosuku");
   const rawAPI = await response.json();
+
   setGame(rawAPI)
   console.log(rawAPI)
 }
@@ -18,13 +20,16 @@ var pineapple = 1;
 // window.onload = gainsheet()
 
 
+
 function setGame(data) {
   let userChoice;
   let boardSolution = data.newboard.grids[0].solution;
   let boardValue = data.newboard.grids[0].value;
+
   console.log(boardValue)
   //digit 1-9 input bar
   for (let i = 1; i <= 9; i++) {
+
     //<div id=i class number> i <div>
     //for each i repeat <div> above
     let numberBox = document.createElement('div')
@@ -34,6 +39,7 @@ function setGame(data) {
     
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
+
       console.log(pineapple)
       if (pineapple != userChoice){
         let cat = document.getElementById(pineapple)
@@ -43,6 +49,7 @@ function setGame(data) {
       // numberBox.classList.remove('number-selected') //chris
       // try {numberBox.classList.remove('number-selected')} //chris
       // catch{console.log('remove grey')} //chris
+
       console.log(userChoice)
       console.log(numberBox.id)
       console.log(pineapple)
@@ -108,12 +115,11 @@ function setGame(data) {
   })
 }
 
-
 //need current selector for user selection
 
 //function for selectingNumber under 
 function selectNumber() {
   boardValue = this;
   boardValue.classList.add('number-selected')
-  console.log(boardValue)
+
 }
