@@ -22,3 +22,11 @@ nav {
   flex-direction: column;
   color: white;
 }
+
+.bg-blue {
+  background-color: rgb(0, 204, 255);
+}
+
+.text-light {
+  background-color: rgb(0, 204, 255);
+}
