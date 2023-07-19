@@ -1,5 +1,12 @@
 //First Name Last Name High School Time? Error?
 
+window.addEventListener('load',()=>{
+const testData = localStorage.getItem('gameResult')
+console.log(testData)}
+)
+//testing above
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function tableGen() {
   //getting body elements
   let tableBody = document.getElementsByClassName("table-group-divider");

@@ -111,7 +111,7 @@ let boxempty = () => {
         userBoxSelected.classList.add('solved')
         try { userBoxSelected.classList.remove('red-text') }
         catch { console.log('no red text') }
-        // endGame(boardSolution, boardValue)
+        
       }
       else {
         error = error + 1
@@ -122,25 +122,18 @@ let boxempty = () => {
       //end game condition below
       if( solvedTile_Number == emptyStartTile_Number){endGame()}
       });
-
   })
   }
 
-  
-////bug endgame function///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// function endGame(solution, userValue) {
-//   if (JSON.stringify(solution) === JSON.stringify(userValue))
-//     fin = true;
-//     console.log(`WINNER`)
 
 function get_class_Number(className)  {
   let varClassTag = document.querySelectorAll(className)
   varClassTag_Number = varClassTag.length
   return varClassTag_Number
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function endGame(){
-  let person = prompt('please enter your first and last name');
+  let person = prompt('You finished the sudoku! what is your name!');
   console.log(person)
   if (person != null){
     console.log(`${person}!`)
@@ -150,7 +143,7 @@ function endGame(){
   //create string of fn, ln, error# and time
   let gameResultData = person.split(' ')
   console.log(gameResultData)
-  names.push(error,timer)  // not sure if timer is the correct variable for time
+  gameResultData.push(error,timer)  // not sure if timer is the correct variable for time
   console.log(gameResultData)
   //push string to string of strings 
   gameResultList.push(gameResultData)
@@ -160,30 +153,6 @@ function endGame(){
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////
-  ////////added prompt for name, captured game results and saved to local storage - not yet tested it's past my bedtime :)
-  //ask for user first name last name
-  // let person = prompt('please enter your first and last name');
-
-  // console.log(person)
-  // if (person != null){
-  //   console.log(`${person}!`)
-  // }else{
-  //   person = 'Gary Alves'
-  // }
-  // //create string of fn, ln, error# and time
-  // let gameResultData = person.split(' ')
-  // console.log(gameResultData)
-  // names.push(error,timer)  // not sure if timer is the correct variable for time
-  // console.log(gameResultData)
-  // //push string to string of strings 
-  // gameResultList.push(gameResultData)
-  // //save to local storage
-  // let gameResultString = JSON.stringify(gameResultList)
-  // localStorage.setItem('gameResult', gameResultString)
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function reduceTimer(num){
   timerCount-=num;
   // _____.textContent = timerCount; you can insert timertext by changing left variable
