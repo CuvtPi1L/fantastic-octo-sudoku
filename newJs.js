@@ -130,7 +130,10 @@ let boxempty = () => {
       let solvedTile_Class = '.solved'
       solvedTile_Number = get_class_Number(solvedTile_Class)
       //end game condition below
-      if (solvedTile_Number == emptyStartTile_Number) { endGame() }
+      if (solvedTile_Number == emptyStartTile_Number) {
+        setTimeout(endGame,1000)
+        // endGame() 
+      }
     });
   })
 }
@@ -142,6 +145,7 @@ function get_class_Number(className) {
 
   return varClassTag_Number
 }
+
 
 
 function endGame() {
@@ -212,7 +216,7 @@ function timerGo() {
 
 //JSON.stringify(k1) === JSON.stringify(k2); // true //this is my compare function for the endgame
 
-
+///////////////////is this function used anywhere?
 //function for selectingNumber under 
 function selectNumber() {
   boardValue = this;
