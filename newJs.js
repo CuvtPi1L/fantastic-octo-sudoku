@@ -147,6 +147,15 @@ function endGame() {
   } else {
     console.log(`${person}!`)
   }
+  //retrieve gameResult from local storage, if available
+  if(localStorage.getItem('gameResult')===null){
+    gameResultList =[]
+  }
+  else{
+    gameResultList = JSON.parse(localStorage.getItem('gameResult'));
+    console.log(gameResultList)
+  }
+
   //create string of fn, ln, error# and time
   let gameResultData = person.split(' ')
   if (gameResultData.length < 2) {
