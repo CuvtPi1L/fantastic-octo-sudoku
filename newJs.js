@@ -10,7 +10,7 @@ window.load = gainsheet()
 
 
 var error = 0;
-var pineapple = 1;
+var saveUserChoice = 1;
 //trying to fucking get the board, it doesn't let me extract the property of raw what the heck
 
 
@@ -34,19 +34,16 @@ function setGame(data) {
     
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-      console.log(pineapple)
-      if (pineapple != userChoice){
-        let cat = document.getElementById(pineapple)
-        cat.classList.remove('number-selected')
-      }  //chris
-      pineapple = numberBox.id //chris
-      // numberBox.classList.remove('number-selected') //chris
-      // try {numberBox.classList.remove('number-selected')} //chris
-      // catch{console.log('remove grey')} //chris
+      console.log(saveUserChoice)
+      if (saveUserChoice != userChoice){
+        let removeShading = document.getElementById(saveUserChoice)
+        removeShading.classList.remove('number-selected')
+      }
+      saveUserChoice = numberBox.id
       console.log(userChoice)
       console.log(numberBox.id)
-      console.log(pineapple)
-      numberBox.classList.add('number-selected')  //chris
+      console.log(saveUserChoice)
+      numberBox.classList.add('number-selected')
     });
     numberBox.classList.add('number')
     
