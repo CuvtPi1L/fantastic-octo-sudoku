@@ -1,37 +1,21 @@
 
-
 async function gainsheet() {
   const response = await fetch("https://sudoku-api.vercel.app/api/dosuku");
   const rawAPI = await response.json();
-
   setGame(rawAPI)
-  console.log(rawAPI)
 }
 window.load = gainsheet()
 //fetch function
 
 // need spot for timer to insert timer text
-var timerCount = 300;
-var error = 0;
-var timer;
-var fin = false;
-var saveUserChoice = 1;
-var gameResultList = [];
-//trying to fucking get the board, it doesn't let me extract the property of raw what the heck
-
-
-//start game once window load 
-// window.onload = gainsheet()
-
-
-
-function setGame(data) {
-  let userChoice;
-  let boardSolution = data.newboard.grids[0].solution;
-  let boardValue = data.newboard.grids[0].value;
-
-  console.log(boardValue)
-  //digit 1-9 input bar
+  var timerCount = 300;
+  var error = 0;
+  var timer;
+  var fin = false;
+  var saveUserChoice = 1;
+  var gameResultList = [];
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function numberBarGeneration(){
   for (let i = 1; i <= 9; i++) {
 
     //<div id=i class number> i <div>
@@ -49,17 +33,15 @@ function setGame(data) {
         removeShading.classList.remove('number-selected')
       }
       saveUserChoice = numberBox.id
-      console.log(userChoice)
-      console.log(numberBox.id)
-      console.log(saveUserChoice)
       numberBox.classList.add('number-selected')
     });
     numberBox.classList.add('number')
 
     document.getElementById('digits').appendChild(numberBox)
   }
+}
 
-  //board 9x9
+function sudokuGridGeneration(){
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
@@ -81,16 +63,37 @@ function setGame(data) {
       document.getElementById("board").append(box);
     }
   }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var boardSolution 
+var  boardValue 
+
+function setGame(rawAPI) {
+  let userChoice;
+   boardSolution = rawAPI.newboard.grids[0].solution;
+   boardValue = rawAPI.newboard.grids[0].value;
+
+  console.log(boardValue)
+  //digit 1-9 input bar
+  numberBarGeneration()
+  //board 9x9
+  sudokuGridGeneration()
+  boxempty()
+
+
+}
+let userBoxSelected
+let boxempty = () => {
   const boxStart = document.querySelectorAll('.box-empty');
-  console.log(boxStart)
   //add eventlistener to each emptybox that has a class .box-empty
-  boxStart.forEach(function (emptyBox) {
-    emptyBox.addEventListener("click", function () {
-      let userBoxSelected = document.getElementById(`${emptyBox.id}`)
-      console.log('click')
+  boxStart.forEach(emptyBox => {
+    emptyBox.addEventListener("click", () => {
+      if(saveUserChoice != 0){
+      userBoxSelected=document.getElementById(`${emptyBox.id}`)
+      console.log(userBoxSelected)
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
-      userBoxSelected.textContent = userChoice;
+      userBoxSelected.textContent = saveUserChoice;
       //parses the user input into value array to compare for endgame
       boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
 
@@ -106,16 +109,14 @@ function setGame(data) {
         console.log(error)
         userBoxSelected.classList.add('red-text')
         //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
-      }
-    });
+      }}
+      });
+    console.log(emptyBox)
   })
-}
+  }
 
-
-function fillBoxes(boardValue) {
-
-}
-
+  
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function endGame(solution, userValue) {
   if (JSON.stringify(solution) === JSON.stringify(userValue))
     fin = true;
