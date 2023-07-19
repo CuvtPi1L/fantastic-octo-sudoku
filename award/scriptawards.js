@@ -12,43 +12,72 @@ addToLocalStoarge_Button.addEventListener("click", () => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function tableGen() {
   //getting body elements
-  let tableBody = document.getElementsByClassName("table-group-divider");
+  let tableBody = document.getElementById("table-group-divider");
 
   //creating table elements
-  let tableRow = document.createElement("tr");
-  let tableHead = document.createElement("th");
-  let tableColumn;
+  //   let tableRow = document.createElement("tr");
+  //   let tableHead = document.createElement("th");
+  //   let tableColumn;
 
   //appending tableElement into tbody
-  tableBody[0].appendChild(tableRow);
-  tableRow.appendChild(tableHead);
+  //   tableBody[0].appendChild(tableRow);
+  //   tableBody.appendChild(tableHead);
   //   tableRow.appendChild(tableColumn);
 
-  const UserInfo = ["siyuan", "che", 90, "jeb"];
-  for (time = 0; time < 4; time++) {
-    let tableColumn = document.createElement("td");
-    tableRow.appendChild(tableColumn);
-    tableColumn.id = time;
-    document.getElementById(time).innerHTML = UserInfo[time];
+  function displayData(gameData) {
+    for (let i = 0; i < gameData.length; i++) {
+      let tableRow = document.createElement("tr");
+      let num = document.createElement("td");
+      num.textContent = i + 1;
+      tableRow.appendChild(num);
+      gameData[i].forEach(function (data) {
+        let tableColumn = document.createElement("td");
+        tableColumn.textContent = data;
+        tableRow.appendChild(tableColumn);
+      });
+      tableBody.appendChild(tableRow);
+    }
   }
+
+  //const UserInfo = ["siyuan", "che", 90, "jeb"];
+  //   function displayGameData(pineapple) {
+  //     for (time = 0; time < 4; time++) {
+  //       let tableColumn = document.createElement("td");
+  //       tableRow.appendChild(tableColumn);
+  //       tableColumn.id = time;
+  //       document.getElementById(time).innerHTML = pineapple[0][time];
+  //     }
+  //   }
+  //   function displayGameData(pineapple) {
+  //     for (let lBoardTable = 0; lBoardTable < pineapple.length; lBoardTable++) {
+  //       for (let lBoard = 0; lBoard < 4; lBoard++) {
+  //         let tableColumn = document.createElement("td");
+  //         tableRow.appendChild(tableColumn);
+  //         tableColumn.id = lBoard;
+  //         document.getElementById(lBoard).innerHTML =
+  //           pineapple[lBoardTable][lBoard];
+  //       }
+  //     }
+  //   }
 
   function getGameData() {
     var tableInfo = [];
-    tableInfo = JSON.parse(localStorage.getItem("game data"));
-    displayGameData();
+    tableInfo = JSON.parse(localStorage.getItem("gameResult"));
+    console.log(tableInfo);
+    displayData(tableInfo);
   }
 
-  function addNewGameData() {
-    //going to newjs?
-    tableInfo.push();
-    localStorage.setItem("game data", JSON.stringify(tableInfo));
-    displayGameData();
-  }
+  //   function addNewGameData() {
+  //     //going to newjs?
+  //     tableInfo.push();
+  //     localStorage.setItem("game data", JSON.stringify(tableInfo));
+  //     displayGameData();
+  //   }
 
   //   jegGen();
   getGameData();
-  addNewGameData();
-  displayGameData();
+  //   addNewGameData();
+  //   displayGameData();
 }
 
 // function jegGen() {

@@ -1,7 +1,7 @@
 /* test update - CG */
 .bob {
   border: 2px solid purple;
-  color: red
+  color: red;
 }
 
 td {
@@ -16,3 +16,9 @@ td {
   background-color: blanchedalmond;
 }
 
+nav {
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+  color: white;
+}
