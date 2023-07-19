@@ -30,3 +30,13 @@ nav {
 .text-light {
   background-color: rgb(0, 204, 255);
 }
+
+#timer {
+  display: flex;
+  justify-content: center;
+}
+
+#newPuzContainer {
+  display: flex;
+  justify-content:center;
+}
