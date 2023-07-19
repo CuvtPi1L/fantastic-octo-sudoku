@@ -95,7 +95,7 @@ function setGame(data) {
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
       userBoxSelected.textContent = userChoice;
-      //parses the user input into value array to compare for endgame
+      //parses the user input into BoardValue array to compare for endgame
       boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
 
       if (userChoice == boardSolution[r][c]) {
@@ -121,9 +121,12 @@ function fillBoxes(boardValue) {
 }
 
 function endGame(solution, userValue) {
-  if (JSON.stringify(solution) === JSON.stringify(userValue))
+  console.log(solution,userValue)
+  if (JSON.stringify(solution) === JSON.stringify(userValue)){
     fin = true;
+    console.log(fin)
     console.log(`WINNER`)
+  } 
 }
 
 
