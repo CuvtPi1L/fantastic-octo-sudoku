@@ -13,7 +13,6 @@ window.load = gainsheet()
 // need spot for timer to insert timer text
 var timerCount = 300;
 var error = 0;
-var pineapple = 1;
 var timer;
 var fin = false;
 var saveUserChoice = 1;
