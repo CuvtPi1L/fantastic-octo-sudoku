@@ -1,9 +1,12 @@
 //First Name Last Name High School Time? Error?
 
-window.addEventListener('load',()=>{
-const testData = localStorage.getItem('gameResult')
-console.log(testData)}
-)
+addToLocalStoarge_Button = document.querySelector('#addToLocalStorage')
+addToLocalStoarge_Button.addEventListener('click',()=>{
+    console.log('AddToLocalStorage')
+    let gameResultList = ['Jeb','Jon','24','happily married']
+    let gameResultString = JSON.stringify(gameResultList)
+    localStorage.setItem('gameResult', gameResultString)}
+    )
 //testing above
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
