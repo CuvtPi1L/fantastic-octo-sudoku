@@ -135,13 +135,25 @@ function get_class_Number(className)  {
 function endGame(){
   let person = prompt('You finished the sudoku! what is your name!');
   console.log(person)
-  if (person != null){
-    console.log(`${person}!`)
+  if (!person){
+    person = 'Gary Almes'
   }else{
-    person = 'Gary Alves'
+    console.log(`${person}!`)
   }
   //create string of fn, ln, error# and time
   let gameResultData = person.split(' ')
+  if (gameResultData.length<2){
+    gameResultData.push('aka Sudoku-Master')
+  }else if(gameResultData.length>2){
+    console.log('need to trim')
+    grd0 = gameResultData[0];
+    grd1 = gameResultData[1];
+    gameResultData = []
+    gameResultData.push(grd0,grd1)
+    console.log(gameResultData)
+  }else{
+    console.log('looks good')
+  }
   console.log(gameResultData)
   gameResultData.push(error,timer)  // not sure if timer is the correct variable for time
   console.log(gameResultData)
