@@ -107,7 +107,7 @@ let boxempty = () => {
         userBoxSelected.textContent = saveUserChoice;
         //parses the user input into value array to compare for endgame
         boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
-// userboxslected = users chosen box from bottom row however saveuserchoice = 1
+        // userboxslected = users chosen box from bottom row however saveuserchoice = 1
         if (userChoice == boardSolution[r][c]) {
           userBoxSelected.classList.add('solved')
           try { userBoxSelected.classList.remove('red-text') }
@@ -138,25 +138,27 @@ function get_class_Number(className) {
 
 
 function endGame() {
+  // setting fin = true stops timer
+  fin = true 
   let person = prompt('You finished the sudoku! what is your name!');
   console.log(person)
-  if (!person){
+  if (!person) {
     person = 'Gary Almes'
-  }else{
+  } else {
     console.log(`${person}!`)
   }
   //create string of fn, ln, error# and time
   let gameResultData = person.split(' ')
-  if (gameResultData.length<2){
+  if (gameResultData.length < 2) {
     gameResultData.push('aka Sudoku-Master')
-  }else if(gameResultData.length>2){
+  } else if (gameResultData.length > 2) {
     console.log('need to trim')
     grd0 = gameResultData[0];
     grd1 = gameResultData[1];
     gameResultData = []
-    gameResultData.push(grd0,grd1)
+    gameResultData.push(grd0, grd1)
     console.log(gameResultData)
-  }else{
+  } else {
     console.log('looks good')
   }
   console.log(gameResultData)
@@ -169,24 +171,28 @@ function endGame() {
   localStorage.setItem('gameResult', gameResultString)
 }
 
-
+//timer function with clear interval for endgame
 function increaseTimer(num) {
   timerCount += num;
-  // _____.textContent = timerCount; you can insert timertext by changing left variable
+  document.getElementById('timer').textContent = (`Time: ${timerCount}`);
   if (fin) {
     clearInterval(timer);
-    // score();//need
   }
-  // if (timerCount <= 0) {
-  //   clearInterval(timer);
-  //   // score();//need
-  // }
 }
 
+let btnPrimary = document.getElementById('newPuz')
+console.log(btnPrimary)
+btnPrimary.addEventListener('click',function(){
+  //this location.reload() is a workaround for now. better functionality would be to reload the content and reset the timer without loading the entire page again
+  location.reload()
+  console.log($('#board'))
+  console.log('click')
+})
+
+console.log(btnPrimary)
 
 function timerGo() {
   timer = setInterval(function () {
-    document.getElementById('timer').textContent = (`Time left: ${timerCount}`)
     increaseTimer(1);
   }, 1000)
 }
