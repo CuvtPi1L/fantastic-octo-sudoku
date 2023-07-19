@@ -1,5 +1,15 @@
 //First Name Last Name High School Time? Error?
 
+addToLocalStoarge_Button = document.querySelector('#addToLocalStorage')
+addToLocalStoarge_Button.addEventListener('click',()=>{
+    console.log('AddToLocalStorage')
+    let gameResultList = ['Jeb','Jon','24','happily married']
+    let gameResultString = JSON.stringify(gameResultList)
+    localStorage.setItem('gameResult', gameResultString)}
+    )
+//testing above
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function tableGen() {
   //getting body elements
   let tableBody = document.getElementsByClassName("table-group-divider");
@@ -48,3 +58,4 @@ function tableGen() {
 // }
 
 tableGen();
+

@@ -1,36 +1,29 @@
 
-
 async function gainsheet() {
   const response = await fetch("https://sudoku-api.vercel.app/api/dosuku");
   const rawAPI = await response.json();
-
   setGame(rawAPI)
-  console.log(rawAPI)
 }
 window.load = gainsheet()
 //fetch function
 
 // need spot for timer to insert timer text
-var timerCount = 300;
-var error = 0;
-var pineapple = 1;
-var timer;
-var fin = false;
-//trying to fucking get the board, it doesn't let me extract the property of raw what the heck
+  var timerCount = 300;
+  var error = 0;
+  var timer;
+  var fin = false;
+  var saveUserChoice = 1;
+  var gameResultList = [];
+
+var emptyStartTile_Number
+var solvedTile_Number
+
+  endGameJump = document.querySelector('#endGameJump')
+  endGameJump.addEventListener('click', () => 
+    { endGame(); console.log('Cheat-Actv')})
 
 
-//start game once window load 
-// window.onload = gainsheet()
-
-
-
-function setGame(data) {
-  let userChoice;
-  let boardSolution = data.newboard.grids[0].solution;
-  let boardValue = data.newboard.grids[0].value;
-
-  console.log(boardValue)
-  //digit 1-9 input bar
+let numberBarGeneration = () =>{
   for (let i = 1; i <= 9; i++) {
 
     //<div id=i class number> i <div>
@@ -42,28 +35,20 @@ function setGame(data) {
 
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-
-      console.log(pineapple)
-      if (pineapple != userChoice) {
-        let cat = document.getElementById(pineapple)
-        cat.classList.remove('number-selected')
-      }  //chris
-      pineapple = numberBox.id //chris
-      // numberBox.classList.remove('number-selected') //chris
-      // try {numberBox.classList.remove('number-selected')} //chris
-      // catch{console.log('remove grey')} //chris
-
-      console.log(userChoice)
-      console.log(numberBox.id)
-      console.log(pineapple)
-      numberBox.classList.add('number-selected')  //chris
+      if (saveUserChoice != userChoice){
+        let removeShading = document.getElementById(saveUserChoice)
+        removeShading.classList.remove('number-selected')
+      }
+      saveUserChoice = numberBox.id
+      numberBox.classList.add('number-selected')
     });
     numberBox.classList.add('number')
 
     document.getElementById('digits').appendChild(numberBox)
   }
+}
 
-  //board 9x9
+function sudokuGridGeneration(){
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
@@ -85,48 +70,87 @@ function setGame(data) {
       document.getElementById("board").append(box);
     }
   }
+  let emptyStartTile_Class = '.box-empty'
+  emptyStartTile_Number = get_class_Number(emptyStartTile_Class)
+  console.log(emptyStartTile_Number)
+}
+
+var boardSolution 
+var  boardValue 
+let userChoice;
+
+function setGame(rawAPI) {
+   boardSolution = rawAPI.newboard.grids[0].solution;
+   boardValue = rawAPI.newboard.grids[0].value;
+
+  console.log(boardValue)
+  //digit 1-9 input bar
+  numberBarGeneration()
+  //board 9x9
+  sudokuGridGeneration()
+  boxempty()
+
+
+}
+let userBoxSelected
+let boxempty = () => {
   const boxStart = document.querySelectorAll('.box-empty');
-  console.log(boxStart)
   //add eventlistener to each emptybox that has a class .box-empty
-  boxStart.forEach(function (emptyBox) {
-    emptyBox.addEventListener("click", function () {
-      let userBoxSelected = document.getElementById(`${emptyBox.id}`)
-      console.log('click')
+  boxStart.forEach(emptyBox => {
+    emptyBox.addEventListener("click", () => {
+      if(saveUserChoice != 0){
+      userBoxSelected=document.getElementById(`${emptyBox.id}`)
+     
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
-      userBoxSelected.textContent = userChoice;
-      //parses the user input into BoardValue array to compare for endgame
+      userBoxSelected.textContent = saveUserChoice;
+      //parses the user input into value array to compare for endgame
       boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
 
       if (userChoice == boardSolution[r][c]) {
-        console.log("it's a match")
+        userBoxSelected.classList.add('solved')
         try { userBoxSelected.classList.remove('red-text') }
         catch { console.log('no red text') }
-        endGame(boardSolution, boardValue)
+        
       }
       else {
         error = error + 1
-        console.log('bummer dude')
-        console.log(error)
         userBoxSelected.classList.add('red-text')
-        //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
-      }
-    });
+      }}
+      let solvedTile_Class = '.solved'
+       solvedTile_Number = get_class_Number(solvedTile_Class)
+      //end game condition below
+      if( solvedTile_Number == emptyStartTile_Number){endGame()}
+      });
   })
+  }
+
+
+function get_class_Number(className)  {
+  let varClassTag = document.querySelectorAll(className)
+  varClassTag_Number = varClassTag.length
+  return varClassTag_Number
 }
 
 
-function fillBoxes(boardValue) {
-
-}
-
-function endGame(solution, userValue) {
-  console.log(solution,userValue)
-  if (JSON.stringify(solution) === JSON.stringify(userValue)){
-    fin = true;
-    console.log(fin)
-    console.log(`WINNER`)
-  } 
+function endGame(){
+  let person = prompt('You finished the sudoku! what is your name!');
+  console.log(person)
+  if (person != null){
+    console.log(`${person}!`)
+  }else{
+    person = 'Gary Alves'
+  }
+  //create string of fn, ln, error# and time
+  let gameResultData = person.split(' ')
+  console.log(gameResultData)
+  gameResultData.push(error,timer)  // not sure if timer is the correct variable for time
+  console.log(gameResultData)
+  //push string to string of strings 
+  gameResultList.push(gameResultData)
+  //save to local storage
+  let gameResultString = JSON.stringify(gameResultList)
+  localStorage.setItem('gameResult', gameResultString)
 }
 
 
