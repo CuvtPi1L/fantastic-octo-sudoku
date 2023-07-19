@@ -14,8 +14,16 @@ window.load = gainsheet()
   var fin = false;
   var saveUserChoice = 1;
   var gameResultList = [];
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function numberBarGeneration(){
+
+var emptyStartTile_Number
+var solvedTile_Number
+
+  endGameJump = document.querySelector('#endGameJump')
+  endGameJump.addEventListener('click', () => 
+    { endGame(); console.log('Cheat-Actv')})
+
+
+let numberBarGeneration = () =>{
   for (let i = 1; i <= 9; i++) {
 
     //<div id=i class number> i <div>
@@ -27,7 +35,6 @@ function numberBarGeneration(){
 
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
-      console.log(saveUserChoice)
       if (saveUserChoice != userChoice){
         let removeShading = document.getElementById(saveUserChoice)
         removeShading.classList.remove('number-selected')
@@ -63,13 +70,16 @@ function sudokuGridGeneration(){
       document.getElementById("board").append(box);
     }
   }
+  let emptyStartTile_Class = '.box-empty'
+  emptyStartTile_Number = get_class_Number(emptyStartTile_Class)
+  console.log(emptyStartTile_Number)
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var boardSolution 
 var  boardValue 
+let userChoice;
 
 function setGame(rawAPI) {
-  let userChoice;
    boardSolution = rawAPI.newboard.grids[0].solution;
    boardValue = rawAPI.newboard.grids[0].value;
 
@@ -90,7 +100,7 @@ let boxempty = () => {
     emptyBox.addEventListener("click", () => {
       if(saveUserChoice != 0){
       userBoxSelected=document.getElementById(`${emptyBox.id}`)
-      console.log(userBoxSelected)
+     
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
       userBoxSelected.textContent = saveUserChoice;
@@ -98,32 +108,38 @@ let boxempty = () => {
       boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
 
       if (userChoice == boardSolution[r][c]) {
-        console.log("it's a match")
+        userBoxSelected.classList.add('solved')
         try { userBoxSelected.classList.remove('red-text') }
         catch { console.log('no red text') }
-        endGame(boardSolution, boardValue)
+        // endGame(boardSolution, boardValue)
       }
       else {
         error = error + 1
-        console.log('bummer dude')
-        console.log(error)
         userBoxSelected.classList.add('red-text')
-        //currently we cannot overwrite wrong answers::: to fix make event listener target only empty boxes::: need if statement to return if userchoice is empty
       }}
+      let solvedTile_Class = '.solved'
+       solvedTile_Number = get_class_Number(solvedTile_Class)
+      //end game condition below
+      if( solvedTile_Number == emptyStartTile_Number){endGame()}
       });
-    console.log(emptyBox)
+
   })
   }
 
   
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function endGame(solution, userValue) {
-  if (JSON.stringify(solution) === JSON.stringify(userValue))
-    fin = true;
-    console.log(`WINNER`)
+////bug endgame function///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// function endGame(solution, userValue) {
+//   if (JSON.stringify(solution) === JSON.stringify(userValue))
+//     fin = true;
+//     console.log(`WINNER`)
 
-  ////////added prompt for name, captured game results and saved to local storage - not yet tested it's past my bedtime :)
-  //ask for user first name last name
+function get_class_Number(className)  {
+  let varClassTag = document.querySelectorAll(className)
+  varClassTag_Number = varClassTag.length
+  return varClassTag_Number
+}
+
+function endGame(){
   let person = prompt('please enter your first and last name');
   console.log(person)
   if (person != null){
@@ -144,6 +160,30 @@ function endGame(solution, userValue) {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+  ////////added prompt for name, captured game results and saved to local storage - not yet tested it's past my bedtime :)
+  //ask for user first name last name
+  // let person = prompt('please enter your first and last name');
+
+  // console.log(person)
+  // if (person != null){
+  //   console.log(`${person}!`)
+  // }else{
+  //   person = 'Gary Alves'
+  // }
+  // //create string of fn, ln, error# and time
+  // let gameResultData = person.split(' ')
+  // console.log(gameResultData)
+  // names.push(error,timer)  // not sure if timer is the correct variable for time
+  // console.log(gameResultData)
+  // //push string to string of strings 
+  // gameResultList.push(gameResultData)
+  // //save to local storage
+  // let gameResultString = JSON.stringify(gameResultList)
+  // localStorage.setItem('gameResult', gameResultString)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function reduceTimer(num){
   timerCount-=num;
   // _____.textContent = timerCount; you can insert timertext by changing left variable
