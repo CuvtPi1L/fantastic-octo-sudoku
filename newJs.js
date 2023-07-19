@@ -13,7 +13,7 @@ var timerCount = 0; // set to 30 for testing purposes // timer currently stops a
 var error = 0;
 var timer;
 var fin = false;
-var saveUserChoice = 1;
+var saveUserChoice = 0;
 var gameResultList = [];
 
 var emptyStartTile_Number
@@ -37,7 +37,10 @@ let numberBarGeneration = () => {
       userChoice = numberBox.id
       if (saveUserChoice != userChoice) {
         let removeShading = document.getElementById(saveUserChoice)
-        removeShading.classList.remove('number-selected')
+        //the problem here is there is no numberBox.id = i = 0 // however this try catch will circumvent this issue
+        try { removeShading.classList.remove('number-selected') }
+        catch { console.log('0 start') }
+        // removeShading.classList.remove('number-selected')
       }
       saveUserChoice = numberBox.id
       numberBox.classList.add('number-selected')
@@ -107,6 +110,7 @@ let boxempty = () => {
         userBoxSelected.textContent = saveUserChoice;
         //parses the user input into value array to compare for endgame
         boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
+
         // userboxslected = users chosen box from bottom row however saveuserchoice = 1
         if (userChoice == boardSolution[r][c]) {
           userBoxSelected.classList.add('solved')
@@ -114,10 +118,13 @@ let boxempty = () => {
           catch { console.log('no red text') }
 
         }
-        else {
+        else if (userChoice != boardSolution[r][c]) {
           increaseTimer(5)
           error = error + 1
           userBoxSelected.classList.add('red-text')
+        }
+        else {
+          return
         }
       }
       let solvedTile_Class = '.solved'
@@ -139,7 +146,7 @@ function get_class_Number(className) {
 
 function endGame() {
   // setting fin = true stops timer
-  fin = true 
+  fin = true
   let person = prompt('You finished the sudoku! what is your name!');
   console.log(person)
   if (!person) {
@@ -190,15 +197,12 @@ function increaseTimer(num) {
 }
 
 let btnPrimary = document.getElementById('newPuz')
-console.log(btnPrimary)
-btnPrimary.addEventListener('click',function(){
+btnPrimary.addEventListener('click', function () {
   //this location.reload() is a workaround for now. better functionality would be to reload the content and reset the timer without loading the entire page again
   location.reload()
   console.log($('#board'))
   console.log('click')
 })
-
-console.log(btnPrimary)
 
 function timerGo() {
   timer = setInterval(function () {
