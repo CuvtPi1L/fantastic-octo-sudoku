@@ -64,8 +64,8 @@ function tableGen() {
     var tableInfo = [];
     tableInfo = JSON.parse(localStorage.getItem("gameResult"));
 
-    //////////////add sort by score first (high to low), then number of errors (low to high) https://stackoverflow.com/questions/50415200/sort-an-array-of-arrays-in-javascript
-    tableInfo = tableInfo.sort(([a, b, c, d], [e, f, g, h]) => h - d || c-g);
+    //////////////add sort by time first (low to high), then number of errors (low to high) https://stackoverflow.com/questions/50415200/sort-an-array-of-arrays-in-javascript
+    tableInfo = tableInfo.sort(([a, b, c, d], [e, f, g, h]) => d-h || c-g);
     console.log(tableInfo);
 
     displayData(tableInfo);
