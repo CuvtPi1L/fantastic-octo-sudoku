@@ -63,6 +63,16 @@ function tableGen() {
   function getGameData() {
     var tableInfo = [];
     tableInfo = JSON.parse(localStorage.getItem("gameResult"));
+
+    //////////////add sort  hopefully
+    //https://stackoverflow.com/questions/50415200/sort-an-array-of-arrays-in-javascript
+    var array = [[123, 3], [745, 4], [643, 5], [643, 2]];
+    tableInfo = tableInfo.sort(([a, b], [c, d]) => c - a || b - d);
+    
+
+
+
+
     console.log(tableInfo);
     displayData(tableInfo);
   }
