@@ -9,7 +9,7 @@ window.load = gainsheet()
 //fetch function
 
 
-var timerCount = 300;
+var timerCount = 0; // set to 30 for testing purposes // timer currently stops at anything below 0
 var error = 0;
 var timer;
 var fin = false;
@@ -115,7 +115,7 @@ let boxempty = () => {
 
         }
         else {
-          reduceTimer(5)
+          increaseTimer(5)
           error = error + 1
           userBoxSelected.classList.add('red-text')
         }
@@ -160,7 +160,7 @@ function endGame() {
     console.log('looks good')
   }
   console.log(gameResultData)
-  gameResultData.push(error, timer)  // not sure if timer is the correct variable for time
+  gameResultData.push(error, timerCount)  // not sure if timer is the correct variable for time
   console.log(gameResultData)
   //push string to string of strings 
   gameResultList.push(gameResultData)
@@ -170,24 +170,24 @@ function endGame() {
 }
 
 
-function reduceTimer(num) {
-  timerCount -= num;
+function increaseTimer(num) {
+  timerCount += num;
   // _____.textContent = timerCount; you can insert timertext by changing left variable
-  if (fin && timerCount > 0) {
+  if (fin) {
     clearInterval(timer);
     // score();//need
   }
-  if (timerCount <= 0) {
-    clearInterval(timer);
-    // score();//need
-  }
+  // if (timerCount <= 0) {
+  //   clearInterval(timer);
+  //   // score();//need
+  // }
 }
 
 
 function timerGo() {
   timer = setInterval(function () {
     document.getElementById('timer').textContent = (`Time left: ${timerCount}`)
-    reduceTimer(1);
+    increaseTimer(1);
   }, 1000)
 }
 
