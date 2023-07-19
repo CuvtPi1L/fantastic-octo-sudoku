@@ -1,15 +1,21 @@
 
+
 async function gainsheet() {
   const response = await fetch("https://sudoku-api.vercel.app/api/dosuku");
   const rawAPI = await response.json();
+
   setGame(rawAPI)
   console.log(rawAPI)
 }
 window.load = gainsheet()
 //fetch function
 
-
+// need spot for timer to insert timer text
+var timerCount = 300;
 var error = 0;
+var pineapple = 1;
+var timer;
+var fin = false;
 var saveUserChoice = 1;
 //trying to fucking get the board, it doesn't let me extract the property of raw what the heck
 
@@ -18,20 +24,23 @@ var saveUserChoice = 1;
 // window.onload = gainsheet()
 
 
+
 function setGame(data) {
   let userChoice;
   let boardSolution = data.newboard.grids[0].solution;
   let boardValue = data.newboard.grids[0].value;
+
   console.log(boardValue)
   //digit 1-9 input bar
   for (let i = 1; i <= 9; i++) {
+
     //<div id=i class number> i <div>
     //for each i repeat <div> above
     let numberBox = document.createElement('div')
     numberBox.id = i
     numberBox.innerText = i
     //interactive with selectNumber()
-    
+
     numberBox.addEventListener('click', function () {
       userChoice = numberBox.id
       console.log(saveUserChoice)
@@ -46,7 +55,7 @@ function setGame(data) {
       numberBox.classList.add('number-selected')
     });
     numberBox.classList.add('number')
-    
+
     document.getElementById('digits').appendChild(numberBox)
   }
 
@@ -67,7 +76,7 @@ function setGame(data) {
       }
       if (c == 2 || c == 5) {
         box.classList.add("vertical-line");
-      }  
+      }
       box.classList.add("box");
       document.getElementById("board").append(box);
     }
@@ -82,17 +91,14 @@ function setGame(data) {
       const r = emptyBox.id.split('-')[0]
       const c = emptyBox.id.split('-')[1]
       userBoxSelected.textContent = userChoice;
-      console.log(boardValue)
-      console.log(boardSolution)
-      
-      boardValue[r].splice([c],1,Number.parseInt(userBoxSelected.textContent))
-      
-      console.log(boardValue[r])
-      console.log(r,c)
+      //parses the user input into value array to compare for endgame
+      boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
+
       if (userChoice == boardSolution[r][c]) {
         console.log("it's a match")
-        try {userBoxSelected.classList.remove('red-text')}
-        catch{console.log('no red text')}
+        try { userBoxSelected.classList.remove('red-text') }
+        catch { console.log('no red text') }
+        endGame(boardSolution, boardValue)
       }
       else {
         error = error + 1
@@ -106,11 +112,44 @@ function setGame(data) {
 }
 
 
-//need current selector for user selection
+function fillBoxes(boardValue) {
+
+}
+
+function endGame(solution, userValue) {
+  if (JSON.stringify(solution) === JSON.stringify(userValue))
+    fin = true;
+    console.log(`WINNER`)
+}
+
+
+function reduceTimer(num){
+  timerCount-=num;
+  // _____.textContent = timerCount; you can insert timertext by changing left variable
+  h2timer.textContent = timerCount;
+  if (fin && timerCount > 0) {
+    clearInterval(timer);
+    // score();//need
+  }
+  if (timerCount <= 0) {
+    clearInterval(timer);
+    // score();//need
+  }
+}
+
+
+function timerGo() {
+  timer = setInterval(function(){
+    reduceTimer(1);
+  },1000)
+}
+
+//JSON.stringify(k1) === JSON.stringify(k2); // true //this is my compare function for the endgame
+
 
 //function for selectingNumber under 
 function selectNumber() {
   boardValue = this;
   boardValue.classList.add('number-selected')
-  console.log(boardValue)
+
 }
