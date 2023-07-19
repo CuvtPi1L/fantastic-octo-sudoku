@@ -16,6 +16,7 @@ var error = 0;
 var timer;
 var fin = false;
 var saveUserChoice = 1;
+var gameResultList = [];
 //trying to fucking get the board, it doesn't let me extract the property of raw what the heck
 
 
@@ -119,6 +120,26 @@ function endGame(solution, userValue) {
   if (JSON.stringify(solution) === JSON.stringify(userValue))
     fin = true;
     console.log(`WINNER`)
+
+  ////////added prompt for name, captured game results and saved to local storage - not yet tested it's past my bedtime :)
+  //ask for user first name last name
+  let person = prompt('please enter your first and last name');
+  console.log(person)
+  if (person != null){
+    console.log(`${person}!`)
+  }else{
+    person = 'Gary Alves'
+  }
+  //create string of fn, ln, error# and time
+  let gameResultData = person.split(' ')
+  console.log(gameResultData)
+  names.push(error,timer)  // not sure if timer is the correct variable for time
+  console.log(gameResultData)
+  //push string to string of strings 
+  gameResultList.push(gameResultData)
+  //save to local storage
+  let gameResultString = JSON.stringify(gameResultList)
+  localStorage.setItem('gameResult', gameResultString)
 }
 
 
