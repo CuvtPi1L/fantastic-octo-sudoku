@@ -11,7 +11,7 @@ addToLocalStoarge_Button.addEventListener("click", () => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function tableGen() {
-  //getting body elements
+	//getting body elements
   let tableBody = document.getElementById("table-group-divider");
 
   //creating table elements
