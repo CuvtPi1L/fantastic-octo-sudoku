@@ -50,18 +50,22 @@ let numberBarGeneration = () => {
     document.getElementById('digits').appendChild(numberBox)
   }
 }
-
+let box_text
 function sudokuGridGeneration() {
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
+       box_text = document.createElement('div')
+      //isolation of text to edit text
       box.id = r + '-' + c;
+      box.appendChild(box_text)
       if (boardValue[r][c] != '0') {
-        box.innerText = boardValue[r][c]
+        box_text.innerText = boardValue[r][c]
         box.classList.add('box-start')
       } else {
-        box.innerText = ''
-        box.classList.add('box-empty')
+        box_text.innerText = '0'
+	box.classList.add('box-empty')
+        box_text.classList.add('hidden')
       }
       if (r == 2 || r == 5) {
         box.classList.add('horizontal-line')
@@ -94,15 +98,20 @@ function setGame(rawAPI) {
   boxempty()
   timerGo()
 
+  console.log
 
 }
+
+
 let userBoxSelected
 let boxempty = () => {
   const boxStart = document.querySelectorAll('.box-empty');
   //add eventlistener to each emptybox that has a class .box-empty
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
+	console.log(saveUserChoice)
       if (saveUserChoice != 0) {
+        box_text.classList.remove('hidden')
         userBoxSelected = document.getElementById(`${emptyBox.id}`)
 
         const r = emptyBox.id.split('-')[0]
@@ -110,6 +119,7 @@ let boxempty = () => {
         userBoxSelected.textContent = saveUserChoice;
         //parses the user input into value array to compare for endgame
         boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
+	//ok wtf is that
 
         // userboxslected = users chosen box from bottom row however saveuserchoice = 1
         if (userChoice == boardSolution[r][c]) {
