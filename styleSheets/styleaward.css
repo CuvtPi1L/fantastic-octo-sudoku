@@ -20,12 +20,22 @@ body {
 header {
   padding: 60px;
   text-align: left;
+  border: 4px solid black;
+  display: flex;
+  justify-content: space-between;
 }
 nav {
   display: flex;
   text-align: right;
   flex-direction: column;
   color: white;
+}
+
+.ins {
+  position: relative;
+  right: 200px;
+  /* display: flex; */
+  /* justify-content: space-between; */
 }
 
 main {
