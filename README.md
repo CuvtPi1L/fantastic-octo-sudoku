@@ -1,117 +1,26 @@
-# Sodoku
+# Sodoku Project 1
 
-## MVP
+## Project description:
 
-1. sodoku puzzle
-    1. api call puzzle https://sudoku-api.vercel.app/
-    2. load in to formate 
-        3. mouse select grid, user input as number 
-        4. JS check input correct or not
-        5. if it's not turn it red, 
-    6. if all grid filled without inconsistancy, they won!
+This application is a sudoku game with a leaderboard page, timer, scoring system and completion celebration. The user can select from various games and enter their name to appear on the leaderboard.
 
-2. award, records
-    7. {count} of puzzle solved, 
+## Team members:
 
+    Sean Chen
+    Chris Gruenhagen
+    Patrick Kevlahan
+    Jacqueline Stiehl
 
-## code struc for MVP
-    framework:
+## Screenshot:
 
-    index(?).html  
-        award.html
-            pint localstorage
-    sodoku.js
-        take api
-        take input,
-        update to index
-        function check correct answer
-        store wincount to localstorage
-    
-    style.css
-        bootstr
-PATRICK TEST
+![Screen shot of page one ](./images/Screenshot-Sudoku.png)
 
+## URL of deployed application
 
-## seperation of work
+## Acknowledgements
 
+Tips from University of Minnesota Full Stack Bootcamp instructor Gary Almes and notes from class sessions.
 
-userNumberSelect css/function 
-    color change
+Tips from class TAs: Katy Vincent and Austin Slater.
 
-endGame function
-    check all grid filled
-    localstorag.setitem('count')
-    takeName function
-
-awardpage.js 
-    take localstorage(count, name)
-    genrate some kinda of trophe or stuff like that
-        SVG animation
-
-* GenerativeHtml.js on Award page
-
-* NumberSelect color
-
-* checkFunction wrong color
-
-
-Jacqueline:
-    awardpage.js 
-        take localstorage(count, name)
-        genrate some kinda of trophe or stuff like that
-            SVG animation  
-
-Chris:
-    checkFunction wrong color
-
-Patrick:
-    boxcheck
-
-chen: 
-    
-  userNumberSelect css/function 
-    color change
-
-    awardpage.js 
-        take localstorage(count, name)
-        genrate some kinda of trophe or stuff like that
-            SVG animation   
-
-
-
-## Timeline
-                            10am           11am              2.30pm
-    July 13:        45min       
-    July 14:     standup   45min          assign jobs 
-
-    July 15:   
-    July 16:     weather app
-
-    July 17:     standup   45min           
-    July 18:     standup   45min          MVP
-    July 19:     standup   45min          
-    July 20:     standup   45min                                finish coding run
-    July 21:     standup   45min 
-
-
-
-
-## features
-mistake option:
-    
-score system:
-    timer 
-    time of mistake/guess
-    track mistake
-
-difficults 
-    easy medium hard
-    PR 
-
- 3 hints 
-
-
-
-
-
-
+Used these resources: Stack Overflow and W3Schools
