@@ -131,7 +131,7 @@ let boxempty = () => {
       solvedTile_Number = get_class_Number(solvedTile_Class)
       //end game condition below
       if (solvedTile_Number == emptyStartTile_Number) {
-        setTimeout(endGame,1000)
+        setTimeout(endGame, 1000)
         // endGame() 
       }
     });
@@ -150,19 +150,47 @@ function get_class_Number(className) {
 
 function endGame() {
   // setting fin = true stops timer
+  //need to add a val checker to make sure use inputs something, if statements?
   fin = true
-  let person = prompt('You finished the sudoku! what is your name!');
+  $('#exampleModalCenter').modal('toggle')
+  $('#saveNameBtn').on('click', function () {
+    //these lets can be condensed later
+    let fName = $('#recipient-Fname').val();
+    let lName = $('#recipient-Lname').val();
+    let person = fName + ` ${lName}`
+    console.log(fName, lName, person)
+    localSaveGame(person)
+    //all the code below for the ramainder of this function can be turned into one function and called
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+  $('.close').on('click', function () {
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+  $('#closeModal').on('click', function () {
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+}
+//when a person inputs multiple spaces the function below works sub optimally
+//the logic can be fixed/REFACTORED by creating arg1(fName) and arg1(lName) for the function and passing them in
+function localSaveGame(person) {
   console.log(person)
+  //this no longer works since person can return as two empty strings
   if (!person) {
     person = 'Gary Almes'
   } else {
     console.log(`${person}!`)
   }
   //retrieve gameResult from local storage, if available
-  if(localStorage.getItem('gameResult')===null){
-    gameResultList =[]
+  if (localStorage.getItem('gameResult') === null) {
+    gameResultList = []
   }
-  else{
+  else {
     gameResultList = JSON.parse(localStorage.getItem('gameResult'));
     console.log(gameResultList)
   }
@@ -202,6 +230,7 @@ function increaseTimer(num) {
 
 let btnPrimary = document.getElementById('newPuz')
 btnPrimary.addEventListener('click', function () {
+
   //this location.reload() is a workaround for now. better functionality would be to reload the content and reset the timer without loading the entire page again
   location.reload()
   console.log($('#board'))
@@ -223,3 +252,6 @@ function selectNumber() {
   boardValue.classList.add('number-selected')
 
 }
+// $('#modalbtn').on('shown.bs.modal', function () {
+//   $('#exampleModalCenter').trigger('focus')
+// })
