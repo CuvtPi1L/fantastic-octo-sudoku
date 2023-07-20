@@ -64,3 +64,9 @@ body {
 .hidden {
   display: hidden;
 }
+
+
+.error{
+  display: flex;
+  flex-direction: row;
+}
