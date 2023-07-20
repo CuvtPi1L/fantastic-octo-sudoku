@@ -159,8 +159,20 @@ function get_class_Number(className) {
 
 
 function endGame() {
+
+  const jsConfetti = new JSConfetti()
+
+  jsConfetti.addConfetti({
+          emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+          confettiRadius: 8,
+          confettiNumber: 500,
+      })
+      
+  jsConfetti.addConfetti()
+
   // setting fin = true stops timer
   //need to add a val checker to make sure use inputs something, if statements?
+  
   fin = true
   $('#exampleModalCenter').modal('toggle')
   $('#saveNameBtn').on('click', function () {
