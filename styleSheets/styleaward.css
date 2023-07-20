@@ -47,3 +47,9 @@ main {
 .bold {
   font-weight: bolder;
 }
+
+
+#newPuzContainer {
+  display: flex;
+  justify-content:center;
+}

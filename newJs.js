@@ -50,18 +50,22 @@ let numberBarGeneration = () => {
     document.getElementById('digits').appendChild(numberBox)
   }
 }
-
+let box_text
 function sudokuGridGeneration() {
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
+       box_text = document.createElement('div')
+      //isolation of text to edit text
       box.id = r + '-' + c;
+      box.appendChild(box_text)
       if (boardValue[r][c] != '0') {
-        box.innerText = boardValue[r][c]
+        box_text.innerText = boardValue[r][c]
         box.classList.add('box-start')
       } else {
-        box.innerText = ''
-        box.classList.add('box-empty')
+        box_text.innerText = '0'
+	box.classList.add('box-empty')
+        box_text.classList.add('hidden')
       }
       if (r == 2 || r == 5) {
         box.classList.add('horizontal-line')
@@ -94,15 +98,20 @@ function setGame(rawAPI) {
   boxempty()
   timerGo()
 
+  console.log
 
 }
+
+
 let userBoxSelected
 let boxempty = () => {
   const boxStart = document.querySelectorAll('.box-empty');
   //add eventlistener to each emptybox that has a class .box-empty
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
+	console.log(saveUserChoice)
       if (saveUserChoice != 0) {
+        box_text.classList.remove('hidden')
         userBoxSelected = document.getElementById(`${emptyBox.id}`)
 
         const r = emptyBox.id.split('-')[0]
@@ -110,6 +119,7 @@ let boxempty = () => {
         userBoxSelected.textContent = saveUserChoice;
         //parses the user input into value array to compare for endgame
         boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
+	//ok wtf is that
 
         // userboxslected = users chosen box from bottom row however saveuserchoice = 1
         if (userChoice == boardSolution[r][c]) {
@@ -131,7 +141,7 @@ let boxempty = () => {
       solvedTile_Number = get_class_Number(solvedTile_Class)
       //end game condition below
       if (solvedTile_Number == emptyStartTile_Number) {
-        setTimeout(endGame,1000)
+        setTimeout(endGame, 1000)
         // endGame() 
       }
     });
@@ -150,19 +160,47 @@ function get_class_Number(className) {
 
 function endGame() {
   // setting fin = true stops timer
+  //need to add a val checker to make sure use inputs something, if statements?
   fin = true
-  let person = prompt('You finished the sudoku! what is your name!');
+  $('#exampleModalCenter').modal('toggle')
+  $('#saveNameBtn').on('click', function () {
+    //these lets can be condensed later
+    let fName = $('#recipient-Fname').val();
+    let lName = $('#recipient-Lname').val();
+    let person = fName + ` ${lName}`
+    console.log(fName, lName, person)
+    localSaveGame(person)
+    //all the code below for the ramainder of this function can be turned into one function and called
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+  $('.close').on('click', function () {
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+  $('#closeModal').on('click', function () {
+    $('#recipient-Fname').val('');
+    $('#recipient-Lname').val('');
+    $('#exampleModalCenter').modal('toggle')
+  })
+}
+//when a person inputs multiple spaces the function below works sub optimally
+//the logic can be fixed/REFACTORED by creating arg1(fName) and arg1(lName) for the function and passing them in
+function localSaveGame(person) {
   console.log(person)
+  //this no longer works since person can return as two empty strings
   if (!person) {
     person = 'Gary Almes'
   } else {
     console.log(`${person}!`)
   }
   //retrieve gameResult from local storage, if available
-  if(localStorage.getItem('gameResult')===null){
-    gameResultList =[]
+  if (localStorage.getItem('gameResult') === null) {
+    gameResultList = []
   }
-  else{
+  else {
     gameResultList = JSON.parse(localStorage.getItem('gameResult'));
     console.log(gameResultList)
   }
@@ -202,6 +240,7 @@ function increaseTimer(num) {
 
 let btnPrimary = document.getElementById('newPuz')
 btnPrimary.addEventListener('click', function () {
+
   //this location.reload() is a workaround for now. better functionality would be to reload the content and reset the timer without loading the entire page again
   location.reload()
   console.log($('#board'))
@@ -223,3 +262,6 @@ function selectNumber() {
   boardValue.classList.add('number-selected')
 
 }
+// $('#modalbtn').on('shown.bs.modal', function () {
+//   $('#exampleModalCenter').trigger('focus')
+// })
