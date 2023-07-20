@@ -12,7 +12,7 @@ window.load = gainsheet()
 
 
 
-var timerCount = 0; // set to 30 for testing purposes // timer currently stops at anything below 0
+var timerCount = 0;
 var error = 0;
 var timer;
 var fin = false;
@@ -37,6 +37,8 @@ let numberBarGeneration = () => {
     //interactive with selectNumber()
 
     numberBox.addEventListener('click', function () {
+      saveUserChoice = numberBox.id
+      console.log(saveUserChoice)
       userChoice = numberBox.id
       if (saveUserChoice != userChoice) {
         let removeShading = document.getElementById(saveUserChoice)
@@ -58,7 +60,7 @@ function sudokuGridGeneration() {
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
       let box = document.createElement('div');
-       box_text = document.createElement('div')
+      box_text = document.createElement('div')
       //isolation of text to edit text
       box.id = r + '-' + c;
       box.appendChild(box_text)
@@ -66,8 +68,8 @@ function sudokuGridGeneration() {
         box_text.innerText = boardValue[r][c]
         box.classList.add('box-start')
       } else {
-        box_text.innerText = '0'
-	box.classList.add('box-empty')
+        box.classList.add('fiftyfifty')
+        box.classList.add('box-empty')
         box_text.classList.add('hidden')
       }
       if (r == 2 || r == 5) {
@@ -113,10 +115,9 @@ let boxempty = () => {
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
 
-    
-        document.getElementById("myAudio").play();
-        //music!
-	console.log(saveUserChoice)
+
+      document.getElementById("myAudio").play();
+      //music!
       if (saveUserChoice != 0) {
         box_text.classList.remove('hidden')
         userBoxSelected = document.getElementById(`${emptyBox.id}`)
@@ -126,7 +127,7 @@ let boxempty = () => {
         userBoxSelected.textContent = saveUserChoice;
         //parses the user input into value array to compare for endgame
         boardValue[r].splice([c], 1, Number.parseInt(userBoxSelected.textContent))
-	//ok wtf is that
+        //ok wtf is that
 
         // userboxslected = users chosen box from bottom row however saveuserchoice = 1
         if (userChoice == boardSolution[r][c]) {
@@ -170,16 +171,16 @@ function endGame() {
   const jsConfetti = new JSConfetti()
 
   jsConfetti.addConfetti({
-          emojis: ['🚗','✨', '💫', '🌸'],
-          confettiRadius: 8,
-          confettiNumber: 400,
-      })
-      
+    emojis: ['🚗', '✨', '💫', '🌸'],
+    confettiRadius: 8,
+    confettiNumber: 400,
+  })
+
   jsConfetti.addConfetti()
 
   // setting fin = true stops timer
   //need to add a val checker to make sure use inputs something, if statements?
-  
+  // fin stops the timer
   fin = true
   $('#exampleModalCenter').modal('toggle')
   $('#saveNameBtn').on('click', function () {
