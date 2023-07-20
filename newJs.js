@@ -6,7 +6,10 @@ async function gainsheet() {
   setGame(rawAPI)
 }
 window.load = gainsheet()
+
+
 //fetch function
+
 
 
 var timerCount = 0; // set to 30 for testing purposes // timer currently stops at anything below 0
@@ -109,6 +112,10 @@ let boxempty = () => {
   //add eventlistener to each emptybox that has a class .box-empty
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
+
+    
+        document.getElementById("myAudio").play();
+        //music!
 	console.log(saveUserChoice)
       if (saveUserChoice != 0) {
         box_text.classList.remove('hidden')
