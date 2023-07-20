@@ -163,9 +163,9 @@ function endGame() {
   const jsConfetti = new JSConfetti()
 
   jsConfetti.addConfetti({
-          emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+          emojis: ['🚗','✨', '💫', '🌸'],
           confettiRadius: 8,
-          confettiNumber: 500,
+          confettiNumber: 400,
       })
       
   jsConfetti.addConfetti()
