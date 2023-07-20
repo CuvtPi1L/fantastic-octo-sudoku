@@ -115,11 +115,9 @@ let boxempty = () => {
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
 
-    
-        document.getElementById("myAudio").play();
-        //music!
-	console.log(saveUserChoice)
-      console.log(saveUserChoice)
+
+      document.getElementById("myAudio").play();
+      //music!
       if (saveUserChoice != 0) {
         box_text.classList.remove('hidden')
         userBoxSelected = document.getElementById(`${emptyBox.id}`)
