@@ -51,3 +51,8 @@ nav {
 body {
   font-family: "Kanit", sans-serif;
 }
+
+.error{
+  display: flex;
+  flex-direction: row;
+}

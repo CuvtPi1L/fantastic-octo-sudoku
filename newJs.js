@@ -113,6 +113,15 @@ let boxempty = () => {
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
 
+      //click functions!
+      console.log(error)
+      if(error > 10){
+        alert('You lost, need to redo');
+          newPuz()
+      }else{
+        console.log("haven't lose yet")
+      }
+      
 
       document.getElementById("myAudio").play();
       //music!
@@ -257,13 +266,15 @@ function increaseTimer(num) {
 }
 
 let btnPrimary = document.getElementById('newPuz')
-btnPrimary.addEventListener('click', function () {
+btnPrimary.addEventListener('click', newPuz)
 
+
+function newPuz() {
   //this location.reload() is a workaround for now. better functionality would be to reload the content and reset the timer without loading the entire page again
   location.reload()
   console.log($('#board'))
   console.log('click')
-})
+}
 
 function timerGo() {
   timer = setInterval(function () {
@@ -278,7 +289,6 @@ function timerGo() {
 function selectNumber() {
   boardValue = this;
   boardValue.classList.add('number-selected')
-
 }
 // $('#modalbtn').on('shown.bs.modal', function () {
 //   $('#exampleModalCenter').trigger('focus')
