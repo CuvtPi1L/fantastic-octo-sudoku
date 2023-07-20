@@ -163,11 +163,11 @@ function endGame() {
   const jsConfetti = new JSConfetti()
 
   jsConfetti.addConfetti({
-    emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
-    confettiRadius: 8,
-    confettiNumber: 500,
-  })
-
+          emojis: ['🚗','✨', '💫', '🌸'],
+          confettiRadius: 8,
+          confettiNumber: 400,
+      })
+      
   jsConfetti.addConfetti()
 
   // setting fin = true stops timer
