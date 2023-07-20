@@ -34,6 +34,8 @@ let numberBarGeneration = () => {
     //interactive with selectNumber()
 
     numberBox.addEventListener('click', function () {
+      saveUserChoice = numberBox.id
+      console.log(saveUserChoice)
       userChoice = numberBox.id
       if (saveUserChoice != userChoice) {
         let removeShading = document.getElementById(saveUserChoice)
@@ -62,8 +64,8 @@ function sudokuGridGeneration() {
       if (boardValue[r][c] != '0') {
         box_text.innerText = boardValue[r][c]
         box.classList.add('box-start')
-      } else {
-        box_text.innerText = '0'
+      } else {        
+        box.classList.add('fiftyfifty')
         box.classList.add('box-empty')
         box_text.classList.add('hidden')
       }
