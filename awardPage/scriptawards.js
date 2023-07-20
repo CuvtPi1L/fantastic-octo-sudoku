@@ -1,4 +1,5 @@
-//First Name Last Name High School Time? Error?
+// element format 
+//first name, last name, time , score
 
 addToLocalStoarge_Button = document.querySelector("#addToLocalStorage");
 addToLocalStoarge_Button.addEventListener("click", () => {
@@ -7,22 +8,11 @@ addToLocalStoarge_Button.addEventListener("click", () => {
   let gameResultString = JSON.stringify(gameResultList);
   localStorage.setItem("gameResult", gameResultString);
 });
-//testing above
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function tableGen() {
-  //getting body elements
   let tableBody = document.getElementById("table-group-divider");
-
-  //creating table elements
-  //   let tableRow = document.createElement("tr");
-  //   let tableHead = document.createElement("th");
-  //   let tableColumn;
-
-  //appending tableElement into tbody
-  //   tableBody[0].appendChild(tableRow);
-  //   tableBody.appendChild(tableHead);
-  //   tableRow.appendChild(tableColumn);
 
   function displayData(gameData) {
     for (let i = 0; i < gameData.length; i++) {
