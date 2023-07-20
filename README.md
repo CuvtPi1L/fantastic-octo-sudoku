@@ -15,9 +15,11 @@ This application is a sudoku game with a leaderboard page, timer, scoring system
 
 ![Screen shot of page one ](./images/Screenshot-Sudoku.png)
 
-## URL of deployed application
+## URL of deployed application:
 
-## Acknowledgements
+https://ad31aid.github.io/fantastic-octo-sudoku/
+
+## Acknowledgements:
 
 Tips from University of Minnesota Full Stack Bootcamp instructor Gary Almes and notes from class sessions.
 
