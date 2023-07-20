@@ -37,8 +37,6 @@ let numberBarGeneration = () => {
     //interactive with selectNumber()
 
     numberBox.addEventListener('click', function () {
-      saveUserChoice = numberBox.id
-      console.log(saveUserChoice)
       userChoice = numberBox.id
       if (saveUserChoice != userChoice) {
         let removeShading = document.getElementById(saveUserChoice)
