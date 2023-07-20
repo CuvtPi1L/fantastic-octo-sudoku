@@ -64,7 +64,7 @@ function sudokuGridGeneration() {
       if (boardValue[r][c] != '0') {
         box_text.innerText = boardValue[r][c]
         box.classList.add('box-start')
-      } else {        
+      } else {
         box.classList.add('fiftyfifty')
         box.classList.add('box-empty')
         box_text.classList.add('hidden')
@@ -165,11 +165,11 @@ function endGame() {
   const jsConfetti = new JSConfetti()
 
   jsConfetti.addConfetti({
-          emojis: ['🚗','✨', '💫', '🌸'],
-          confettiRadius: 8,
-          confettiNumber: 400,
-      })
-      
+    emojis: ['🚗', '✨', '💫', '🌸'],
+    confettiRadius: 8,
+    confettiNumber: 400,
+  })
+
   jsConfetti.addConfetti()
 
   // setting fin = true stops timer
