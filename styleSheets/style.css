@@ -69,4 +69,14 @@ body {
 .error{
   display: flex;
   flex-direction: row;
-}
+  text-align: center;
+  margin: auto;
+  width: 50%;
+
+  
+    justify-content: center;
+  }
+
+  .red{
+	color: red;
+  }
