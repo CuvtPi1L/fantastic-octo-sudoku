@@ -29,11 +29,14 @@ function globalFunction() {
 
   let numberBarGeneration = () => {
     for (let i = 1; i <= 9; i++) {
+      
       //<div id=i class number> i <div>
       //for each i repeat <div> above
       let numberBox = document.createElement("div");
       numberBox.id = i;
       numberBox.innerText = i;
+     
+  
       //interactive with selectNumber()
 
       numberBox.addEventListener("click", function () {
@@ -54,6 +57,7 @@ function globalFunction() {
       numberBox.classList.add("number");
 
       document.getElementById("digits").appendChild(numberBox);
+     
     }
   };
   let box_text;
