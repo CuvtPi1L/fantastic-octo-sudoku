@@ -165,7 +165,6 @@ function globalFunction(){
         //end game condition below
         if (solvedTile_Number == emptyStartTile_Number) {
           setTimeout(endGame, 1000)
-          // endGame() 
         }
       });
     })
@@ -186,7 +185,7 @@ function globalFunction(){
     const jsConfetti = new JSConfetti()
 
     jsConfetti.addConfetti({
-      emojis: ['🚗', '✨', '💫', '🌸'],
+      emojis: ['🚗', '✨', '💫', '🌸','🐈'],
       confettiRadius: 8,
       confettiNumber: 400,
     })
@@ -204,7 +203,7 @@ function globalFunction(){
       let lName = $('#recipient-Lname').val();
       let person = fName + ` ${lName}`
       console.log(fName, lName, person)
-      localSaveGame(person)
+      localSaveGame(fName, lName)
       //all the code below for the ramainder of this function can be turned into one function and called
       $('#recipient-Fname').val('');
       $('#recipient-Lname').val('');
@@ -221,48 +220,38 @@ function globalFunction(){
       $('#exampleModalCenter').modal('toggle')
     })
   }
-  //when a person inputs multiple spaces the function below works sub optimally
-  //the logic can be fixed/REFACTORED by creating arg1(fName) and arg1(lName) for the function and passing them in
-  function localSaveGame(person) {
-    console.log(person)
-    //this no longer works since person can return as two empty strings
-    if (!person) {
-      person = 'Gary Almes'
-    } else {
-      console.log(`${person}!`)
-    }
-    //retrieve gameResult from local storage, if available
-    if (localStorage.getItem('gameResult') === null) {
-      gameResultList = []
-    }
-    else {
-      gameResultList = JSON.parse(localStorage.getItem('gameResult'));
-      console.log(gameResultList)
-    }
 
-    //create string of fn, ln, error# and time
-    let gameResultData = person.split(' ')
-    if (gameResultData.length < 2) {
-      gameResultData.push('aka Sudoku-Master')
-    } else if (gameResultData.length > 2) {
-      console.log('need to trim')
-      grd0 = gameResultData[0];
-      grd1 = gameResultData[1];
-      gameResultData = []
-      gameResultData.push(grd0, grd1)
-      console.log(gameResultData)
-    } else {
-      console.log('looks good')
+function localSaveGame(firstName, lastName) {
+  // add firstName, lastName if not entered
+  if (!lastName) {
+    if(!firstName){
+    firstName = 'Gary'
+    lastName = 'Alves'}
+    else{
+      lastName = 'aka Sudoku-Master'
     }
-    console.log(gameResultData)
-    gameResultData.push(error, timerCount)  // not sure if timer is the correct variable for time
-    console.log(gameResultData)
-    //push string to string of strings 
-    gameResultList.push(gameResultData)
-    //save to local storage
-    let gameResultString = JSON.stringify(gameResultList)
-    localStorage.setItem('gameResult', gameResultString)
+  } else {
+    console.log(`${firstName} ${lastName}!`)
   }
+  //retrieve gameResult from local storage, if available
+  if (localStorage.getItem('gameResult') === null) {
+    gameResultList = []
+  }
+  else {
+    gameResultList = JSON.parse(localStorage.getItem('gameResult'));
+    console.log(gameResultList)
+  }
+
+  //create string of fn, ln, error# and time
+  let gameResultData = []
+  gameResultData.push(firstName,lastName, error, timerCount)
+  console.log(gameResultData)
+  //push string to string of strings 
+  gameResultList.push(gameResultData)
+  //save to local storage
+  let gameResultString = JSON.stringify(gameResultList)
+  localStorage.setItem('gameResult', gameResultString)
+}
 
   //timer function with clear interval for endgame
   function increaseTimer(num) {
