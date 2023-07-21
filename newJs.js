@@ -113,6 +113,8 @@ let boxempty = () => {
   boxStart.forEach(emptyBox => {
     emptyBox.addEventListener("click", () => {
 
+
+
       //click functions!
       console.log(error)
       if(error > 10){
@@ -122,6 +124,7 @@ let boxempty = () => {
         console.log("haven't lose yet")
       }
       
+     
 
       document.getElementById("myAudio").play();
       //music!
@@ -145,6 +148,8 @@ let boxempty = () => {
         }
         else if (userChoice != boardSolution[r][c]) {
           increaseTimer(5)
+          error_bar = document.querySelector('.error_bar')
+          error_bar.textContent += 'X'
           error = error + 1
           userBoxSelected.classList.add('red-text')
         }
